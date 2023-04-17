@@ -8,7 +8,7 @@ from UI.find_replace_menu import create_find_replace_menu, create_find_menu
 from utils.singleton import Singleton
 
 
-class Window:
+class Window(metaclass=Singleton):
     def __init__(self):
         self.__window = tk.Tk()
         self.__window.title('Current file: None')

@@ -17,7 +17,7 @@ class TextSearcher:
             ind = text.find(string)
         if ind != -1 and string != '':
             self.__pos = ind
-            self.__label.config(text=f'{text.count(string, 0, ind + 1)}/{text.count(string)}')
+            self.__label.config(text=f'{text.count(string, 0, ind + 1 + len(string))}/{text.count(string)}')
             self.__code_area.found_substr(ind, ind + len(string), highlight_all)
         else:
             self.__label.config(text='0 results')
@@ -32,7 +32,7 @@ class TextSearcher:
             ind = text.rfind(string)
         if ind != -1 and string != '':
             self.__pos = ind
-            self.__label.config(text=f'{text.count(string, 0, ind + 1)}/{text.count(string)}')
+            self.__label.config(text=f'{text.count(string, 0, ind + 1 + len(string))}/{text.count(string)}')
             self.__code_area.found_substr(ind, ind + len(string))
         else:
             self.__label.config(text='0 results')
@@ -42,3 +42,4 @@ class TextSearcher:
         content = self.__code_area.get_text()
         for i in range(content.count(string)):
             self.find_next(string, True)
+        self.__label.config(text=f'found {content.count(string)} substrings')
