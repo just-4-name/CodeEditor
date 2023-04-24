@@ -8,6 +8,9 @@ def valid_languages():
 
 
 class CodeArea:
+    MIN_FONT_SIZE = 2
+    MAX_FONT_SIZE = 30
+
     def __init__(self, window):
         self.__window = window
         self.__code_editor = CodeEditor(window, **code_editor_settings)
@@ -35,7 +38,7 @@ class CodeArea:
         return self.__code_editor.get(1.0, tk.END)
 
     def change_font(self, delta):
-        if 2 < self.__code_editor.font_size + delta < 30:
+        if self.MIN_FONT_SIZE < self.__code_editor.font_size + delta < self.MAX_FONT_SIZE:
             self.__code_editor.font_size += delta
 
     def set_language(self, language):
